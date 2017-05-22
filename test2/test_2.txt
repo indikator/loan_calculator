@@ -1,0 +1,13 @@
+1. For to know the execute time of each function we can wrap this function to next construction:
+$timeStart = microtime(true);
+# HERE IS INVESTIGATED FUNCTION
+$timeEnd = microtime(true);
+$time = $timeEnd - $timeStart;
+echo "Function XXX has been executed $time seconds.";
+
+2. From my experience - the most cases of increase execution time is:
+a) open (and maybe not close) database connection and/or file resources inside loops.
+The time spent for opening connection/resource extremely more than work with it.
+b) deep loops. 3 and more level. Each level is increase time of executing exponentially.
+c) unneeded check. For exaple - if (false & false & true) will check each sentence,
+while if (false && false && true) will check only first.

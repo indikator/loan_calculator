@@ -1,16 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: indikator
- * Date: 5/22/17
- * Time: 1:47 PM
- */
 
-$input = './input.txt';
-$output = './output.txt';
+$input = $argv[1];
+$output = $argv[2];
+
+if (empty($input) || empty($output)) {
+    exit('Please use: "php test_1.php /path/to/input.txt /path/to/output.txt"' . PHP_EOL);
+}
 
 $resInput = fopen($input, 'r');
-$resOutput = fopen($output, 'a+');
+$resOutput = fopen($output, 'w+');
 $wordPosition = 0;
 
 while(($string = fgets($resInput)) !== false) {
